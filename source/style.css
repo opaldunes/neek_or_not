@@ -36,7 +36,7 @@ h1 {
 }
 
 button {
-    padding: 20px 80px;
+    padding: 20px 30px;
     margin: 0 10px;
     font-family: monospace;
     font-size: 16px;
@@ -48,6 +48,69 @@ button {
 }
 
 button.green {
-    background-color: rgb(98, 255, 148);
-    color: rgb(255, 180, 180);
+    background-color: rgb(85, 144, 247);
+    color: rgb(255, 255, 255);
+}
+
+/* Center the login form vertically and horizontally */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: monospace;
+}
+
+/* Style the login container */
+#login-container {
+    width: 230px;
+    padding: 20px;
+    background-color: hsl(0, 100%, 50%);
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+}
+
+/* Style form elements */
+.form-group {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 90%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-family: monospace
+}
+
+#login-button {
+    width: 27%;
+    height: 10%;
+    padding: 3px;
+    background-color: #6892d6;
+    color: #000000;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: monospace;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    display: block; 
+    margin: 0 auto; 
+}
+
+#login-button:hover {
+    background-color: #7b96c4;
 }

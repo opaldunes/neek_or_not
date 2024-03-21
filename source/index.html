@@ -5,10 +5,26 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Are You A Neek Or Not?</h1>
+  <div id="login-container">
+    <form id="login-form">
+        <div class="form-group">
+            <h1>log in</h1>
+            <label for="username">username</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button id="login-button" class="login-button" type="submit">enter</button>
+    </form>
+  </div>
+  <div id="main-content" style="display: none;">
+    <h1>neek or not?</h1>
   <div class="buttons">
-    <button id="onlineBtn">Get Online!</button>
-    <button id="workBtn">Get To Work!</button>
+    <button id="onlineBtn">get online!</button>
+    <button id="workBtn">get to work!</button>
+  </div>
   </div>
   <script src="script.js"></script>
 </body>
