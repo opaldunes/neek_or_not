@@ -1,2 +1,3 @@
-# neek_or_not
-A simple web-app.
+# Neek or Not
+
+https://neek-or-not-xbaw36steq-nw.a.run.app/
