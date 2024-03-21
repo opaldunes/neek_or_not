@@ -31,16 +31,11 @@ jobs:
 
     - name: Build Container
       run: |
-        ls -al
-        pwd
         docker build -t $IMAGE_NAME .
-        docker tag $IMAGE_NAME $ARTIFACT_REGISTRY_DOMAIN/$PROJECT_ID/$REPOSITORY/$IMAGE_NAME
-        docker image ls
-        echo "$IMAGE_NAME"
-        echo "$ARTIFACT_REGISTRY_DOMAIN/$PROJECT_ID/$IMAGE_NAME"
+        docker tag $IMAGE_NAME $ARTIFACT_REGISTRY_DOMAIN/$PROJECT_ID/$REPOSITORY/$IMAGE_NAME:latest
 
     - name: Push Container to Google Artifact Registry
       run: |
-        echo "$ARTIFACT_REGISTRY_DOMAIN/$PROJECT_ID/$IMAGE_NAME"
+        echo "$ARTIFACT_REGISTRY_DOMAIN/$PROJECT_ID/$IMAGE_NAME:latest"
         docker image ls
-        docker push $ARTIFACT_REGISTRY_DOMAIN/$PROJECT_ID/$REPOSITORY/$IMAGE_NAME
+        docker push $ARTIFACT_REGISTRY_DOMAIN/$PROJECT_ID/$REPOSITORY/$IMAGE_NAME:latest
