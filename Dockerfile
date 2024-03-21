@@ -9,3 +9,5 @@ EXPOSE 80
 
 # Command to run the web server
 CMD ["nginx", "-g", "daemon off;"]
+
+# 
