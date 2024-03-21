@@ -1,0 +1,53 @@
+body {
+    background-image: url('media/image1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.blur-background {
+    filter: blur(5px); /* Adjust the blur amount as needed */
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    font-family: monospace;
+    color: white;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 38px;
+    filter: blur(1px); 
+}
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+    margin-top: 20px;
+}
+
+button {
+    padding: 20px 80px;
+    margin: 0 10px;
+    font-family: monospace;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 29px;
+    border: none;
+    position: relative;
+    z-index: 1;
+}
+
+button.green {
+    background-color: rgb(9, 0, 132);
+    color: white;
+}
