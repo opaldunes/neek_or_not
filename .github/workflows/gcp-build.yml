@@ -7,7 +7,8 @@ on:
 
 env:
   PROJECT_ID: in-a-bit-417915
-  IMAGE_NAME: neek-or-not-repo
+  REPOSITORY: neek-or-not-repo
+  IMAGE_NAME: neek-or-not
   ARTIFACT_REGISTRY_DOMAIN: "europe-southwest1-docker.pkg.dev"
 
 jobs:
@@ -33,7 +34,7 @@ jobs:
         ls -al
         pwd
         docker build -t $IMAGE_NAME .
-        docker tag $IMAGE_NAME $ARTIFACT_REGISTRY_DOMAIN/$PROJECT_ID/$IMAGE_NAME
+        docker tag $IMAGE_NAME $ARTIFACT_REGISTRY_DOMAIN/$PROJECT_ID/$REPOSITORY/$IMAGE_NAME
         docker image ls
         echo "$IMAGE_NAME"
         echo "$ARTIFACT_REGISTRY_DOMAIN/$PROJECT_ID/$IMAGE_NAME"
@@ -42,4 +43,4 @@ jobs:
       run: |
         echo "$ARTIFACT_REGISTRY_DOMAIN/$PROJECT_ID/$IMAGE_NAME"
         docker image ls
-        docker push $ARTIFACT_REGISTRY_DOMAIN/$PROJECT_ID/$IMAGE_NAME
+        docker push $ARTIFACT_REGISTRY_DOMAIN/$PROJECT_ID/$REPOSITORY/$IMAGE_NAME
