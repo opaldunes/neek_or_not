@@ -48,6 +48,6 @@ button {
 }
 
 button.green {
-    background-color: rgb(9, 0, 132);
-    color: white;
+    background-color: rgb(98, 255, 148);
+    color: rgb(255, 180, 180);
 }
