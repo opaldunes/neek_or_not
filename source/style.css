@@ -1,8 +1,8 @@
 body {
     background-image: url('media/image1.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background-size: cover, cover; 
+    background-position: center, center; 
+    background-attachment: fixed; 
     overflow: hidden;
     margin: 0;
     padding: 0;
@@ -48,7 +48,7 @@ button {
 }
 
 button.green {
-    background-color: rgb(85, 144, 247);
+    background-color: rgb(81, 58, 130);
     color: rgb(255, 255, 255);
 }
 
@@ -68,7 +68,7 @@ html, body {
     padding: 20px;
     background-color: hsl(0, 100%, 50%);
     border-radius: 5px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1);
     background-color: transparent;
 }
 
@@ -96,8 +96,8 @@ input[type="password"] {
     width: 27%;
     height: 10%;
     padding: 3px;
-    background-color: #6892d6;
-    color: #000000;
+    background-color: rgb(81, 58, 130);;
+    color: #ffffff;
     border: none;
     border-radius: 3px;
     cursor: pointer;
@@ -105,6 +105,7 @@ input[type="password"] {
     font-size: 14px;
     display: flex;
     justify-content: center;
+    top: 12px;
     align-items: center;
     margin-top: 10px;
     display: block; 
@@ -114,3 +115,30 @@ input[type="password"] {
 #login-button:hover {
     background-color: #7b96c4;
 }
+
+body::after {
+    content: "";
+    background-image: url('media/image2.jpg');
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    filter: blur(5px);
+}
+
+.image-container {
+    position: fixed;
+    top: -22%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: url('media/image2.png');
+    background-size: 200px auto; /* Set the background size to 30% of its original width and auto height */
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(1px);
+  }
+  
