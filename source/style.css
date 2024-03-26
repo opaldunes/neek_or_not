@@ -106,6 +106,28 @@ input[type="password"] {
     display: flex;
     justify-content: center;
     top: 12px;
+    left: -80px;
+    align-items: center;
+    margin-top: 10px;
+    display: block; 
+    margin: 0 auto; 
+}
+#create-button {
+    width: 27%;
+    height: 10%;
+    padding: 3px;
+    background-color: rgb(58, 130, 98);;
+    color: #ffffff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: monospace;
+    font-size: 14px;
+    left: 65px;
+    display: flex;
+    justify-content: center;
+    top: -10px;
+
     align-items: center;
     margin-top: 10px;
     display: block; 
@@ -115,7 +137,9 @@ input[type="password"] {
 #login-button:hover {
     background-color: #7b96c4;
 }
-
+#create-button:hover {
+    background-color: #7bc4a0;
+}
 body::after {
     content: "";
     background-image: url('media/image2.jpg');
