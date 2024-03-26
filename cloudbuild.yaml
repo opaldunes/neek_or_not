@@ -1,0 +1,5 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/neek-or-not/neek_or_not-nginx-1:nginx-alpine', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/neek-or-not/neek_or_not-nginx-1:nginx-alpine']

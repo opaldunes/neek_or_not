@@ -17,9 +17,7 @@ document.getElementById("login-form").addEventListener("submit", function(event)
 
     if (isAuthenticated) {
         // Hide login form
-        document.getElementById("login-container").style.display = "none";
-        // Display main content
-        document.getElementById("main-content").style.display = "block";
+        window.location.href = "homepage.html";
     } else {
         // Display error message or handle unsuccessful login
         alert("Invalid username or password. Please try again.");
