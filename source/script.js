@@ -1,4 +1,13 @@
+// Initialize Auth0 Lock
+var lock = new Auth0Lock('neek-or-not-login', 'dev-q2uoeptszv4xfljl.eu.auth0.com', {
+    auth: {
+      redirectUrl: './homepage.html', // Use a relative URL to homepage.html
+      responseType: 'token'
+    }
+  });
 
+  // Show Auth0 Lock when the page loads
+  lock.show();
 // Main Page
 
 const onlineBtn = document.getElementById('onlineBtn');
