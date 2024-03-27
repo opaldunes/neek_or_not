@@ -1,3 +1,3 @@
 # Neek or Not
 
-https://neek-or-not-xbaw36steq-nw.a.run.app/
+https://neek-or-not-j2iphc33zq-lz.a.run.app/
