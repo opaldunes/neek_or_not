@@ -12,7 +12,7 @@ const config = {
   user: 'sqlserver',
   password: 'brawlstars',
   server: '34.38.131.91', // Public IP address of your SQL Server
-  database: 'users_database',
+  database: 'users_databse',
   options: {
     encrypt: true // For Azure SQL Database
   }
