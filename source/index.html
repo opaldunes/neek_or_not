@@ -1,18 +1,69 @@
 <!DOCTYPE html>
 <head>
-  <title>neek or not?</title>
-  <link rel="icon" type="image/png" href="media/favicon.png">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>neek or not?</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="media/favicon.png">
+    <!-- Include Auth0 SPA SDK -->
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
 </head>
 <body>
-  <div class="image-container"></div>
-    <div id="main-content">
-      <h1>neek or not?</h1>
-    <div class="buttons">
-      <button id="onlineBtn">get online!</button>
-      <button id="workBtn">get to work!</button>
+    <!-- Container for displaying user profile -->
+    <div id="profile" style="display: none;">
+        <h2>User Profile</h2>
+        <p>Name: <span id="user-name"></span></p>
+        <img id="user-picture" src="" alt="User Picture">
+        <!-- Add more profile information here as needed -->
+        <!-- Logout button -->
+        <button id="logout">Log Out</button>
     </div>
-  </div>
-  <script src="script.js"></script>
+    
+    <script>
+        auth0.createAuth0Client({
+            domain: "dev-q2uoeptszv4xfljl.eu.auth0.com",
+            clientId: "XUzajVRXoDxADinp4Xz6BdZJlDlC6yJH",
+            authorizationParams: {
+                redirect_uri: window.location.origin + "/homepage.html"
+            }
+        }).then(async (auth0Client) => {
+            // Initiate login process
+            await auth0Client.loginWithRedirect();
+
+            // Assumes a button with id "logout" in the DOM
+            const logoutButton = document.getElementById("logout");
+
+            logoutButton.addEventListener("click", (e) => {
+                e.preventDefault();
+                auth0Client.logout();
+            });
+
+            const isAuthenticated = await auth0Client.isAuthenticated();
+            const userProfile = await auth0Client.getUser();
+
+            // Assumes an element with id "profile" in the DOM
+            const profileElement = document.getElementById("profile");
+
+            if (isAuthenticated) {
+                profileElement.style.display = "block";
+                profileElement.innerHTML = `
+                    <p>${userProfile.name}</p>
+                    <img src="${userProfile.picture}" />
+                `;
+            } else {
+                profileElement.style.display = "none";
+            }
+        });
+    </script>
+
+    <div class="image-container"></div>
+      <div id="main-content">
+        <h1>neek or not?</h1>
+      <div class="buttons">
+        <button id="onlineBtn">get online!</button>
+        <button id="workBtn">get to work!</button>
+      </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
