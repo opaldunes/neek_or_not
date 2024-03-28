@@ -49,7 +49,7 @@ function updateButtonStatus(newStatus) {
       return response.json();
     })
     .then(data => {
-      console.log('Button status updated:', data);
+      console.log('Button status updated:', data.fields.Name);
     })
     .catch(error => {
       console.error('Error:', error);
@@ -89,7 +89,7 @@ async function main() {
     console.log(button_status)
     if (button_status) {
         // Simulate click on the previously selected button
-        document.getElementById(selectedButtonId).click();
+        document.getElementById(button_status).click();
     }
 }
   
