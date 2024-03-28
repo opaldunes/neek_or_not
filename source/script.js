@@ -1,14 +1,54 @@
-// Initialize Auth0 Lock
-var lock = new Auth0Lock('neek-or-not-login', 'dev-q2uoeptszv4xfljl.eu.auth0.com', {
-    auth: {
-      redirectUrl: './homepage.html', // Use a relative URL to homepage.html
-      responseType: 'token'
+auth0.createAuth0Client({
+    domain: "dev-q2uoeptszv4xfljl.eu.auth0.com",
+    clientId: "XUzajVRXoDxADinp4Xz6BdZJlDlC6yJH",
+    authorizationParams: {
+      redirect_uri: window.location.origin
     }
+}).then(async (auth0Client) => {
+  // Assumes a button with id "login" in the DOM
+  const loginButton = document.getElementById("login");
+
+  loginButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    auth0Client.loginWithRedirect();
   });
 
-  // Show Auth0 Lock when the page loads
-  lock.show();
-// Main Page
+  if (location.search.includes("state=") && 
+      (location.search.includes("code=") || 
+      location.search.includes("error="))) {
+    await auth0Client.handleRedirectCallback();
+    window.history.replaceState({}, document.title, "/");
+  }
+
+  // Assumes a button with id "logout" in the DOM
+  const logoutButton = document.getElementById("logout");
+
+  logoutButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    auth0Client.logout();
+  });
+
+  const isAuthenticated = await auth0Client.isAuthenticated();
+  const userProfile = await auth0Client.getUser();
+
+  // Assumes an element with id "profile" in the DOM
+  const profileElement = document.getElementById("profile");
+
+  if (isAuthenticated) {
+    profileElement.style.display = "block";
+    profileElement.innerHTML = `
+            <p>${userProfile.name}</p>
+            <img src="${userProfile.picture}" />
+          `;
+  } else {
+    profileElement.style.display = "none";
+  }
+});
+
+
+
+
+
 
 const onlineBtn = document.getElementById('onlineBtn');
 const workBtn = document.getElementById('workBtn');
