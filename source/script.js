@@ -1,6 +1,7 @@
 const onlineBtn = document.getElementById('onlineBtn');
 const workBtn = document.getElementById('workBtn');
 const mainContent = document.getElementById('main-content');
+const profileElement = document.getElementById('profile');
 
 const apiKey = 'patIfaS9rxvey5yzF.ffb1ac6f25310d8d49cb12ce82ed0020effde4922d6dd636d513145d59ead35a';
 const url = 'https://api.airtable.com/v0/appACEYultgfTJ5MV/button-status';
@@ -91,8 +92,12 @@ async function main() {
     }).then(async (auth0Client) => {
         const isAuthenticated = await auth0Client.isAuthenticated();
         if (isAuthenticated) {
-            // Show main content
+            // Hide login screen and show main content
+            profileElement.style.display = "none";
             mainContent.style.display = "block";
+        } else {
+            // Show login screen
+            profileElement.style.display = "block";
         }
 
         // Add event listeners
