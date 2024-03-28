@@ -16,6 +16,7 @@
         <p>Name: <span id="user-name"></span></p>
         <img id="user-picture" src="" alt="User Picture">
         <!-- Add more profile information here as needed -->
+        <!-- Logout button -->
         <button id="logout">Log Out</button>
     </div>
 
@@ -27,36 +28,29 @@
                 redirect_uri: window.location.origin + "/homepage.html"
             }
         }).then(async (auth0Client) => {
-            const loginButton = document.getElementById("login");
-            const logoutButton = document.getElementById("logout");
-
-            loginButton.style.display = "none"; // Hide login button initially
-
-            // Automatically initiate login on page load
+            // Initiate login process
             await auth0Client.loginWithRedirect();
 
-            logoutButton.addEventListener("click", async (e) => {
+            // Assumes a button with id "logout" in the DOM
+            const logoutButton = document.getElementById("logout");
+
+            logoutButton.addEventListener("click", (e) => {
                 e.preventDefault();
-                await auth0Client.logout();
+                auth0Client.logout();
             });
 
-            // Handle authentication callback
-            if (location.search.includes("state=") && 
-                (location.search.includes("code=") || 
-                location.search.includes("error="))) {
-                await auth0Client.handleRedirectCallback();
-                window.history.replaceState({}, document.title, "/");
-            }
-
             const isAuthenticated = await auth0Client.isAuthenticated();
-            const userProfile = isAuthenticated ? await auth0Client.getUser() : null;
+            const userProfile = await auth0Client.getUser();
 
+            // Assumes an element with id "profile" in the DOM
             const profileElement = document.getElementById("profile");
 
-            if (isAuthenticated && userProfile) {
+            if (isAuthenticated) {
                 profileElement.style.display = "block";
-                document.getElementById("user-name").textContent = userProfile.name || "Unknown";
-                document.getElementById("user-picture").src = userProfile.picture || "";
+                profileElement.innerHTML = `
+                    <p>${userProfile.name}</p>
+                    <img src="${userProfile.picture}" />
+                `;
             } else {
                 profileElement.style.display = "none";
             }
