@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,11 +15,18 @@
         <h2>User Profile</h2>
         <p>Name: <span id="user-name"></span></p>
         <img id="user-picture" src="" alt="User Picture">
-        <!-- Add more profile information here as needed -->
         <!-- Logout button -->
         <button id="logout">Log Out</button>
     </div>
     
+    <div id="main-content" style="display: none;">
+        <h1>neek or not?</h1>
+        <div class="buttons">
+            <button id="onlineBtn">get online!</button>
+            <button id="workBtn">get to work!</button>
+        </div>
+    </div>
+
     <script>
         auth0.createAuth0Client({
             domain: "dev-q2uoeptszv4xfljl.eu.auth0.com",
@@ -43,27 +51,22 @@
 
             // Assumes an element with id "profile" in the DOM
             const profileElement = document.getElementById("profile");
+            const mainContent = document.getElementById("main-content");
 
             if (isAuthenticated) {
                 profileElement.style.display = "block";
+                mainContent.style.display = "block";
+
                 profileElement.innerHTML = `
-                    <p>${userProfile.name}</p>
-                    <img src="${userProfile.picture}" />
+                    <p>Name: ${userProfile.name}</p>
+                    <img src="${userProfile.picture}" alt="User Picture">
                 `;
             } else {
                 profileElement.style.display = "none";
+                mainContent.style.display = "none";
             }
         });
     </script>
-
-    <div class="image-container"></div>
-      <div id="main-content">
-        <h1>neek or not?</h1>
-      <div class="buttons">
-        <button id="onlineBtn">get online!</button>
-        <button id="workBtn">get to work!</button>
-      </div>
-    </div>
     <script src="script.js"></script>
 </body>
 </html>
