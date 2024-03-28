@@ -1,7 +1,6 @@
 const onlineBtn = document.getElementById('onlineBtn');
 const workBtn = document.getElementById('workBtn');
 const mainContent = document.getElementById('main-content');
-const profileElement = document.getElementById('profile');
 
 const apiKey = 'patIfaS9rxvey5yzF.ffb1ac6f25310d8d49cb12ce82ed0020effde4922d6dd636d513145d59ead35a';
 const url = 'https://api.airtable.com/v0/appACEYultgfTJ5MV/button-status';
@@ -80,35 +79,32 @@ async function fetchButtonStatus() {
 }
 
 async function main() {
+    const button_status = await fetchButtonStatus();
+
     // Check if user is authenticated
-    const auth0Client = await auth0.createAuth0Client({
+    auth0.createAuth0Client({
         domain: "dev-q2uoeptszv4xfljl.eu.auth0.com",
         clientId: "XUzajVRXoDxADinp4Xz6BdZJlDlC6yJH",
         authorizationParams: {
             redirect_uri: window.location.origin + "/index.html"
         }
+    }).then(async (auth0Client) => {
+        const isAuthenticated = await auth0Client.isAuthenticated();
+        if (isAuthenticated) {
+            // Show main content
+            mainContent.style.display = "block";
+        }
+
+        // Add event listeners
+        onlineBtn.addEventListener('click', handleClick);
+        workBtn.addEventListener('click', handleClick);
+
+        // Check if there's a previously selected button
+        if (button_status) {
+            // Simulate click on the previously selected button
+            document.getElementById(button_status).click();
+        }
     });
-
-    const isAuthenticated = await auth0Client.isAuthenticated();
-    if (isAuthenticated) {
-        // Hide login screen and show main content
-        profileElement.style.display = "none";
-        mainContent.style.display = "block";
-    } else {
-        // Show login screen
-        profileElement.style.display = "block";
-    }
-
-    // Add event listeners
-    onlineBtn.addEventListener('click', handleClick);
-    workBtn.addEventListener('click', handleClick);
-
-    // Check if there's a previously selected button
-    const button_status = await fetchButtonStatus();
-    if (button_status) {
-        // Simulate click on the previously selected button
-        document.getElementById(button_status).click();
-    }
 }
 
 main().catch(error => {
